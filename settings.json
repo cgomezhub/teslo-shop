@@ -1,6 +1,4 @@
-{
-  "extends": "next/core-web-vitals",
-  "eslint.options": {
+"eslint.options": {
     "import/no-anonymous-default-export": [
       "error",
       {
@@ -13,5 +11,4 @@
         "allowObject": true
       }
     ]
-  }
-}
+  },

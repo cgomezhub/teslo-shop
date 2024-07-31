@@ -6,7 +6,7 @@ import {initialData} from "@/seed/seed";
 
 const products = initialData.products;
 
-export default function Home() {
+export default function() {
   return (
   <>
   <Title title="Tienda" subtitle="Todos los productos" className="mb-2"/>
