@@ -1,0 +1,15 @@
+version: '3.8'
+
+
+services: 
+  postgres-db: # nombre del servicio
+    image: postgres:15.3 # imagen de postgres
+    restart: always # reinicia el contenedor
+    environment: # variables de entorno
+      POSTGRES_USER: ${DB_USER} # usuario de la base de datos
+      POSTGRES_DB: ${DB_NAME} # nombre de la base de datos
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # contraseña de la base de datos
+    volumes: # discos virtuales
+      - ./postgres:/var/lib/postgresql/data # conecta la data de postgres con la maquina host
+    ports: # puertos desde la maquina host al contenedor
+      - 5432:5432 # puerto de postgres en el contenedor y en la maquina host
