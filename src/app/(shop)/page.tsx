@@ -1,17 +1,29 @@
-import Image from "next/image";
+import { getpaginatedProducstWithImages } from "@/actions";
+import { Pagination, ProductGrid, Title } from "@/components";
+import { redirect } from "next/navigation";
 
-import { titleFont} from "@/config/fonts";
-import { ProductGrid, Title } from "@/components";
-import {initialData} from "@/seed/seed";
+interface Props {
+  searchParams: {
+    page?: string;
+  };
+}
 
-const products = initialData.products;
+export default async function ({ searchParams }: Props) {
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
-export default function() {
+  const { products, currentPage, totalPages } = await getpaginatedProducstWithImages({ page });
+
+    if (products.length===0){
+    redirect("/");
+  }
+
   return (
-  <>
-  <Title title="Tienda" subtitle="Todos los productos" className="mb-2"/>
+    <>
+      <Title title="Tienda" subtitle="Todos los productos" className="mb-2" />
 
-  <ProductGrid products={products} />
-  </>
+      <ProductGrid products={products} />
+
+      <Pagination  totalPages={totalPages} />
+    </>
   );
 }
