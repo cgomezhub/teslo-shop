@@ -1,6 +1,5 @@
 import { initialData } from "./seed";
 import prisma from "../lib/prisma";
-import { clear, Console } from "console";
 import { Category } from "../interfaces/product.interface";
 import Image from "next/image";
 import { data } from "autoprefixer";
