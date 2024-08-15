@@ -15,3 +15,5 @@ export * from "./product/quantity-selector/QuantitySelector";
 export * from "./product/slide-show/ProductSlideshow";
 export * from "./product/slide-show/ProductMobileSlideshow";
 
+export * from "./product/stock-label/StockLabel";
+
