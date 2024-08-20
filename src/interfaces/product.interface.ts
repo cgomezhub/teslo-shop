@@ -1,3 +1,4 @@
+import Image from 'next/image';
 
 
 export interface Product {
@@ -12,6 +13,16 @@ export interface Product {
     title: string;
     //todo: type: Types;
     gender: Category;
+}
+
+export interface CartProduct{
+    id: string;
+    title: string;
+    quantity: number;
+    slug: string;
+    size: Size;
+    price: number;
+    image: string;
 }
 
 export type Category = 'men'|'women'|'kid'|'unisex'
