@@ -17,3 +17,5 @@ export * from "./product/slide-show/ProductMobileSlideshow";
 
 export * from "./product/stock-label/StockLabel";
 
+export * from "./provider/Provider";
+

@@ -44,7 +44,7 @@ E commerce Tipo Tesla en Next.js
         - 
     - ejecutar ```npm run seed```
 9. En caso de querer Borrar contenido de tablas prexistentes
-   (se tiene una base de daatos de teting con data basura):
+   (se tiene una base de datos de teting con data basura):
     - npx prisma generate
     - en src crear una carpeta lib con  prsima.ts: src/lib/prisma.ts
     - cargar alli:

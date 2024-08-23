@@ -1,12 +1,10 @@
 import { initialData } from "./seed";
 import prisma from "../lib/prisma";
-import { Category } from "../interfaces/product.interface";
-import Image from "next/image";
-import { data } from "autoprefixer";
 
 async function main() {
   // 1. Borrar registros previos
   // await Promise.all( [
+  await prisma.user.deleteMany();
   await prisma.productImage.deleteMany();
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
@@ -14,7 +12,12 @@ async function main() {
 
   // 2. crear categorias
 
-  const { categories, products } = initialData;
+  const { categories, products, users } = initialData;
+
+  await prisma.user.createMany({
+    data: users,
+  });
+  
 
   const categoriesData = categories.map((name) => ({
     name,
@@ -63,11 +66,11 @@ async function main() {
 
     const imagesData = images.map((image) => ({
       url: image,
-      productId: dbProduct.id
+      productId: dbProduct.id,
     }));
 
     await prisma.productImage.createMany({
-      data: imagesData
+      data: imagesData,
     });
   });
 }

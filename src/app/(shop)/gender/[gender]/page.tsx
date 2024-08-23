@@ -30,7 +30,7 @@ export async function generateMetadata(
     gender: gender as Gender,
   });
   // get the first product
-  console.log({ images: products?.[1]?.images[1] });
+  // console.log({ images: products?.[1]?.images[1] });
 
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || []
