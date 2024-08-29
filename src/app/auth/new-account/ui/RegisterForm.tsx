@@ -25,8 +25,6 @@ export const RegisterForm = () => {
     formState: { errors },
   } = useForm<FormInputs>();
 
-
-
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
 
     setErrorMessage('');

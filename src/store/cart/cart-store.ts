@@ -1,9 +1,11 @@
 import type { CartProduct } from "@/interfaces";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist } from "zustand/middleware"; // middleware para persistir el estado en el local storage
 
 interface State {
   cart: CartProduct[];
+
+  // methods 
 
   getSummaryInformation(): {
     subTotal: number;

@@ -22,21 +22,18 @@ E commerce Tipo Tesla en Next.js
 6. configurar Prisma https://www.prisma.io/
     - npx prisma
     - npx prisma init: 
-        - crea el archivo ```schema.prisma``` que contiene el esquema prisma con tus modelos de esquema y variables para la conexion de la base de datos
+        - crear y cargar manualmente  el archivo ```schema.prisma``` que contiene el esquema prisma con tus modelos de esquema y variables para la conexion de la base de datos
         - agrega en .env DATABASE_URL el cual debe ser cargado con los valores de las variables de alli
     -  En schema.prisma se carga los enumeraciones para Gender y Size (objetos con valores constantes  en Postgres) y modelos (tablas a relacionar en postgres) segun como esta en el seed (semilla), las enumeraciones se realizan para los Sizes y Gender mientras que para las imagenes se hace otro modelo aparte, primerose hacen 2 modelos uno para categorias (Category) y otro para el producto (Product) para crear relaciones entre ellas
-    - ``` importante ``se ejecuta la migracion npx prisma migrate dev --name init para impactar la BD que se puede visualizar en Table plus.
-    - cada vez que haga una modificacion del schema.prisma 
-     ``` debo ejecutar npx prisma migrate dev --name init `
-    - se carga otro modelo ProductImage que se relaciona con el Modelo  Product y luego se ejecuta nuevamente 
-    npx prisma migrate dev --name 
-7. Correr las migraciones  de Primsa ```npx prisma migrate      
-   dev```
+    - ``` importante ``` se ejecuta ```npx prisma migrate dev --name init``` para impactar la BD que se puede visualizar en Table plus.
+    - cada vez que haga una modificacion (agregar o quitar model)del schema.prisma  ``` debo ejecutar npx prisma migrate dev --name init `
+    - se carga otro modelo ProductImage que se relaciona con el Modelo  Product y luego se ejecuta nuevamente ```npx prisma migrate dev --n ```m de ser necesario recargar la app, cancelar la consola y volver a correr ``` npm run dev ```
+7. Correr las migraciones  de Primsa ```npx prisma migrate dev```
 8. Procedimiento seed - semilla(cargar data desde el seed.js la 
    base de datos):
     - en ./seed crear un archivo seed-database.ts
     - correr npm i -D ts-node (para poder correr un archivo ts en Node).
-    - en package.json generar un script "seed":"ts-node src/seed/seed-database.ts".
+    - en package.json generar un script ``` "seed":"ts-node src/seed/seed-database.ts" ```
     - para solventar el error al correr npm run seed (not module foud):
         - en la terminal aplicar cd src/seed/
         - ejecutar npx tsc --init (esto genera alli  el archivo tsconfig.json)
@@ -45,7 +42,7 @@ E commerce Tipo Tesla en Next.js
     - ejecutar ```npm run seed```
 9. En caso de querer Borrar contenido de tablas prexistentes
    (se tiene una base de datos de teting con data basura):
-    - npx prisma generate
+    - ```npx prisma generate```
     - en src crear una carpeta lib con  prsima.ts: src/lib/prisma.ts
     - cargar alli:
          import { PrismaClient } from '@prisma/client'
