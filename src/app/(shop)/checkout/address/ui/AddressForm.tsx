@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import clsx from "clsx";
 
 import type { Address, Country } from "@/interfaces";
-import { useAddressStore } from "@/store";
+import { useAddressStore, useCartStore } from "@/store";
 
 import { deleteUserAddress, setUserAddress } from "@/actions";
 
@@ -35,7 +35,7 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
     register,
     handleSubmit,
     formState: { isValid, errors },
-    reset,
+    reset
   } = useForm<FormInputs>({
     defaultValues: {
       ...(userStoredAddress as any),
@@ -45,6 +45,8 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
 
   const setAddress = useAddressStore((state) => state.setAddress);
   const address = useAddressStore((state) => state.address);
+
+  const cart = useCartStore((state) => state.cart);
 
   const { data: session } = useSession({
     required: true,
@@ -59,10 +61,9 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
   }, [address]);
 
   const onSubmit = async (data: FormInputs) => {
-
-    setAddress(data);
-
     const { rememberAddress, ...rest } = data;
+
+    setAddress(rest);
 
     if (rememberAddress) {
       await setUserAddress(rest, userId);
@@ -71,6 +72,10 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
     }
     router.push("/checkout");
   };
+
+  if (cart.length === 0) {
+    router.push("/");
+  }
 
   return (
     <form
