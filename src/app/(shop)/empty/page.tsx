@@ -13,5 +13,5 @@ export default function EmptyPage() {
         <Link href="/" className="text-blue-500 text-3xl">Regresar</Link>
       </div>
     </div>
-  );y
+  );
 }

@@ -50,8 +50,8 @@ export default async function () {
                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
               >
                 <div className="flex flex-col">
-                  <text> Monto</text>
-                  <text>(USD)</text>
+                  <span> Monto</span>
+                  <span>(USD)</span>
                 </div>
               
               </th>

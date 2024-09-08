@@ -2,7 +2,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { getOrderById } from "@/actions";
 
-import { IsOrderPaid, Title } from "@/components";
+import { IsOrderPaid, PaypalButton, Title } from "@/components";
 
 import { currencyFormat } from "@/utils";
 
@@ -23,12 +23,10 @@ export default async function ({ params }: Props) {
     redirect("/auth/login");
   }
 
-  console.log({ order });
+  // console.log({ order });
 
   const address = order!.OrderAddress;
   const products = order!.OrderItem;
-
-  
 
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0 ">
@@ -41,7 +39,10 @@ export default async function ({ params }: Props) {
           <div className="flex flex-col mt-5">
             <IsOrderPaid isPaid={order?.isPaid ?? false} />
             {products.map((item) => (
-              <div key={item.product.slug} className="flex mb-5">
+              <div
+                key={item.product.slug + "-" + item.size}
+                className="flex mb-5"
+              >
                 <Image
                   src={`/products/${item.product.ProductImage[0].url}`}
                   alt={item.product.title}
@@ -108,7 +109,11 @@ export default async function ({ params }: Props) {
               </span>
             </div>
             <div className="mt-5 mb-2 w-full">
-            <IsOrderPaid isPaid={order?.isPaid ?? false} />  
+              {order?.isPaid ? (
+                <IsOrderPaid isPaid={order?.isPaid ?? false} />
+              ) : (
+                <PaypalButton amount={order!.total} orderId={order!.id} />
+              )}
             </div>
           </div>
         </div>

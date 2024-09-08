@@ -55,7 +55,7 @@ export const PlaceOrder = () => {
     clearCart();
     router.replace(`/orders/${resp.order?.id}`);
 
-    console.log({ resp });
+    // console.log({ resp });
   };
 
   if (!loaded) return <p> is Loading...</p>;

@@ -132,6 +132,10 @@ model Order {
 
   OrderItem    OrderItem[] // Relacion con los productos  1 a muchos
   OrderAddress OrderAddress? // Relacion con la direccion de envio 1 a 1
+
+  transactionId String?
+
+  
 }
 
 model OrderItem {
