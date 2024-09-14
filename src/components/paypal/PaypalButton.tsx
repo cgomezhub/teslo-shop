@@ -1,6 +1,11 @@
 "use client";
 
-import { CreateOrderActions, CreateOrderData, OnApproveActions, OnApproveData } from "@paypal/paypal-js";
+import {
+  CreateOrderActions,
+  CreateOrderData,
+  OnApproveActions,
+  OnApproveData,
+} from "@paypal/paypal-js";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { paypalCheckPayment, setTransactionId } from "@/actions";
 
@@ -38,15 +43,13 @@ export const PaypalButton = ({ amount, orderId }: Props) => {
     // console.log({ resp });
 
     if (!resp.ok) {
-      
       throw new Error(`${resp.message}`);
     }
 
     return transactionId;
   };
 
-  const onApprove = async (data:OnApproveData, actions:OnApproveActions) => {
-
+  const onApprove = async (data: OnApproveData, actions: OnApproveActions) => {
     const details = await actions.order?.capture();
 
     // console.log({ details });
@@ -57,12 +60,7 @@ export const PaypalButton = ({ amount, orderId }: Props) => {
     }
 
     await paypalCheckPayment(details.id as string);
-
-
-
-  }
-
-
+  };
 
   return (
     <>
@@ -72,10 +70,9 @@ export const PaypalButton = ({ amount, orderId }: Props) => {
           <div className="h-10 bg-gray-200 w-full rounded-md mt-2"></div>
         </div>
       ) : (
-        <PayPalButtons
-          createOrder={createOrder}
-          onApprove={onApprove}
-        />
+        <div className= "relative z-0"> 
+          <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+        </div>
       )}
     </>
   );

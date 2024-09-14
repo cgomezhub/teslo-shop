@@ -33,7 +33,6 @@ export const Sidebar = () => {
     <div>
       {/* backgraund black */}
       {/* blur */}
-
       {isSideMenuOpen && (
         <>
           <div className=" fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30" />
@@ -43,7 +42,6 @@ export const Sidebar = () => {
           />
         </>
       )}
-
       {/* sidebar */}
       <nav //TODO efecto de slide
         className={clsx(
@@ -67,23 +65,26 @@ export const Sidebar = () => {
         </div>
 
         {/* menu */}
-
-        <Link
-          href="/profile"
-          onClick={() => closeMenu()}
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoPersonAddOutline size={30} />
-          <span className="ml-3 text-xl">Perfil</span>
-        </Link>
-        <Link
-          href="/orders"
-          onClick={() => closeMenu()}
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-        >
-          <IoTicketOutline size={30} />
-          <span className="ml-3 text-xl">Ordenes</span>
-        </Link>
+        {isAuthenticated && (
+          <>
+            <Link
+              href="/profile"
+              onClick={() => closeMenu()}
+              className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+            >
+              <IoPersonAddOutline size={30} />
+              <span className="ml-3 text-xl">Perfil</span>
+            </Link>
+            <Link
+              href="/orders"
+              onClick={() => closeMenu()}
+              className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+            >
+              <IoTicketOutline size={30} />
+              <span className="ml-3 text-xl">Ordenes</span>
+            </Link>
+          </>
+        )}
 
         {!isAuthenticated && (
           <>
@@ -120,21 +121,24 @@ export const Sidebar = () => {
         {userRole === "admin" && (
           <>
             <Link
-              href="/"
+              href="/admin/products"
+              onClick={() => closeMenu()}
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoShirtOutline size={30} />
               <span className="ml-3 text-xl">Productos</span>
             </Link>
             <Link
-              href="/"
+              href="/admin/orders"
+              onClick={() => closeMenu()}
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoTicketOutline size={30} />
               <span className="ml-3 text-xl">Ordenes</span>
             </Link>
             <Link
-              href="/"
+              href="/admin/users"
+              onClick={() => closeMenu()}
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoPeopleOutline size={30} />

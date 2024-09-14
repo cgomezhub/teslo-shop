@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Swiper as SwiperObjet } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
-
+import { ProductImage } from "@/components";
 
 // Import Swiper styles
 import "swiper/css";
@@ -27,7 +27,6 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
 
   return (
     <div className={className}>
-
       <Swiper
         style={
           {
@@ -38,21 +37,35 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
         spaceBetween={10}
         navigation={true}
         autoplay={{ delay: 2500 }}
-        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper: null }}
+        thumbs={{
+          swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+        }}
         modules={[FreeMode, Navigation, Thumbs, Autoplay]}
         className="mySwiper2"
       >
-        {images.map((image) => (
-          <SwiperSlide key={image}>
-            <Image
+        {!Array.isArray(images) ||images.length === 0 ? (
+          <SwiperSlide>
+            <ProductImage
               width={1024}
               height={800}
-              src={`/products/${image}`}
-              alt={title}
+              src=""
+              alt="Placeholder"
               className="rounded-lg"
             />
           </SwiperSlide>
-        ))}
+        ) : (
+          images.map((image) => (
+            <SwiperSlide key={image}>
+              <ProductImage
+                width={1024}
+                height={800}
+                src={image}
+                alt={title}
+                className="rounded-lg"
+              />
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
 
       <Swiper
@@ -64,17 +77,29 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        {images.map((image) => (
-          <SwiperSlide key={image}>
-            <Image
-              width={300}
-              height={300}
-              src={`/products/${image}`}
-              alt={title}
+        {!Array.isArray(images) ||images.length === 0 ? (
+          <SwiperSlide>
+            <ProductImage
+              width={1024}
+              height={800}
+              src=""
+              alt="Placeholder"
               className="rounded-lg"
             />
           </SwiperSlide>
-        ))}
+        ) : (
+          images.map((image) => (
+            <SwiperSlide key={image}>
+              <ProductImage
+                width={1024}
+                height={800}
+                src={image}
+                alt={title}
+                className="rounded-lg"
+              />
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
     </div>
   );

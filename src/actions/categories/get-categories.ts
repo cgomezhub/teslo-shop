@@ -2,17 +2,16 @@
 
 import prisma from "@/lib/prisma";
 
-export const getCountries = async () => {
+export const getCategories = async () => {
   try {
-    const countries = await prisma.country.findMany({
+    const categories = await prisma.category.findMany({
       orderBy: {
         name: "asc",
       },
     });
-    return countries;
+    return categories;
   } catch (error) {
     console.log(error);
-
-    throw new Error("Error getting country");
+    return [];
   }
 };
