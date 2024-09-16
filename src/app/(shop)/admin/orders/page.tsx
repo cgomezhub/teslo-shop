@@ -12,7 +12,7 @@ export default async function () {
   //! server action: toda la info de la orden viende de la base de datos
   const { ok, orders = [] } = await getPaginatedOrders();
 
-  console.log({ orders });
+  // console.log({ orders });
 
   if (!ok) {
     redirect("/auth/login");
