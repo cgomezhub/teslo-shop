@@ -52,7 +52,7 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = params;
   // console.log(params);
   const product = await getProductBySlug(slug);
-  console.log({product});
+  // console.log({product});
 
   if (!product) {
     notFound();
